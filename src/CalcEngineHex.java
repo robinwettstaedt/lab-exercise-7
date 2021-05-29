@@ -11,8 +11,7 @@ public class CalcEngineHex extends CalcEngine {
 
 
 
-    public void numberPressed(int number)
-    {
+    public void numberPressed(int number) {
 
         if(buildingDisplayValue) {
             // Incorporate this digit.
