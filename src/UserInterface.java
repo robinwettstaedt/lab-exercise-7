@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -21,6 +22,7 @@ public class UserInterface
     protected JFrame frame;
     protected JTextField display;
     protected JLabel status;
+    protected HashMap<String,JButton> map = new HashMap<String,JButton>();
 
     /**
      * Create a user interface.
@@ -97,6 +99,7 @@ public class UserInterface
         button.addActionListener(this);
         panel.add(button);
     }
+
 
     /**
      * An interface action has been performed.

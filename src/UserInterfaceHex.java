@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -13,7 +14,10 @@ public class UserInterfaceHex extends UserInterface {
      */
     public UserInterfaceHex(CalcEngineHex engine) {
         super(engine);
+
     }
+
+
 
     protected void makeFrame() {
 
@@ -28,14 +32,26 @@ public class UserInterfaceHex extends UserInterface {
 
         JPanel buttonPanel = new JPanel(new GridLayout(6, 4));
 
-        addButton(buttonPanel, "d");
-        addButton(buttonPanel, "e");
-        addButton(buttonPanel, "f");
+        JButton dButton = new JButton("d");
+        addButtonToPanel(buttonPanel, dButton);
+
+        JButton eButton = new JButton("e");
+        addButtonToPanel(buttonPanel, eButton);
+
+        JButton fButton = new JButton("f");
+        addButtonToPanel(buttonPanel, fButton);
+
         addButton(buttonPanel, "Dec");
 
-        addButton(buttonPanel, "a");
-        addButton(buttonPanel, "b");
-        addButton(buttonPanel, "c");
+        JButton aButton = new JButton("a");
+        addButtonToPanel(buttonPanel, aButton);
+
+        JButton bButton = new JButton("b");
+        addButtonToPanel(buttonPanel, bButton);
+
+        JButton cButton = new JButton("c");
+        addButtonToPanel(buttonPanel, cButton);
+
         addButton(buttonPanel, "Hex");
 
         addButton(buttonPanel, "7");
@@ -56,17 +72,37 @@ public class UserInterfaceHex extends UserInterface {
         addButton(buttonPanel, "0");
         addButton(buttonPanel, "+");
         addButton(buttonPanel, "-");
+
         addButton(buttonPanel, "=");
+
 
         contentPane.add(buttonPanel, BorderLayout.CENTER);
 
         status = new JLabel(calc.getAuthor());
         contentPane.add(status, BorderLayout.SOUTH);
-
         frame.pack();
 
     }
 
+    protected void addButtonToPanel(Container panel, JButton button)
+    {
+        button.addActionListener(this);
+        panel.add(button);
+        button.setEnabled(false);
+        map.put(button.getText(), button);
+    }
+
+    protected void enableButtons(String command) {
+        for (JButton button : map.values()) {
+            if (command.equals("Hex")) {
+                button.setEnabled(true);
+            }
+            else {
+                button.setEnabled((false));
+            }
+        }
+    }
+    
     public void actionPerformed(ActionEvent event) {
 
         String command = event.getActionCommand();
@@ -129,9 +165,11 @@ public class UserInterfaceHex extends UserInterface {
         }
         else if(command.equals("Dec")) {
             calc.changeIsDecCalc();
+            enableButtons(command);
         }
         else if(command.equals("Hex")) {
             calc.changeIsDecCalc();
+            enableButtons(command);
         }
 
         redisplay();
