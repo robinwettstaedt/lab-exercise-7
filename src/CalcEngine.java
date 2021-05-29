@@ -22,12 +22,29 @@ public class CalcEngine
     // The value of an existing left operand.
     protected int leftOperand;
 
+
+    private boolean isDecCalc = true;
+
     /**
      * Create a CalcEngine.
      */
     public CalcEngine()
     {
         clear();
+    }
+
+    public boolean getIsDecCalcValue() {
+        return isDecCalc;
+    }
+
+
+    public void changeIsDecCalc() {
+        if (isDecCalc)  {
+            isDecCalc = false;
+        }
+        else {
+            isDecCalc = true;
+        }
     }
 
     /**

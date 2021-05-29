@@ -31,12 +31,12 @@ public class UserInterfaceHex extends UserInterface {
         addButton(buttonPanel, "d");
         addButton(buttonPanel, "e");
         addButton(buttonPanel, "f");
-        addButton(buttonPanel, " ");
+        addButton(buttonPanel, "Dec");
 
         addButton(buttonPanel, "a");
         addButton(buttonPanel, "b");
         addButton(buttonPanel, "c");
-        addButton(buttonPanel, " ");
+        addButton(buttonPanel, "Hex");
 
         addButton(buttonPanel, "7");
         addButton(buttonPanel, "8");
@@ -127,13 +127,23 @@ public class UserInterfaceHex extends UserInterface {
         else if(command.equals("?")) {
             showInfo();
         }
+        else if(command.equals("Dec")) {
+            calc.changeIsDecCalc();
+        }
+        else if(command.equals("Hex")) {
+            calc.changeIsDecCalc();
+        }
 
         redisplay();
 
     }
 
     protected void redisplay() {
-
-        display.setText("0x" + Integer.toHexString(calc.getDisplayValue()));
+        if (calc.getIsDecCalcValue()) {
+            display.setText("" + calc.getDisplayValue());
+        }
+        else {
+            display.setText("0x" + Integer.toHexString(calc.getDisplayValue()));
+        }
     }
 }
