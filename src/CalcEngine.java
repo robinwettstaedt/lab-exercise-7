@@ -56,6 +56,10 @@ public class CalcEngine
         return displayValue;
     }
 
+    public String getStringDisplayValue() {
+        return "";
+    }
+
     /**
      * A number button was pressed.
      * Either start a new operand, or incorporate this number as
@@ -223,4 +227,9 @@ public class CalcEngine
     }
 
 
+    public void evaluateInfix(String stringDisplayValue) {
+    }
+
+    public void changeMultiDigit() {
+    }
 }
