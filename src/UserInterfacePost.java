@@ -27,8 +27,11 @@ public class UserInterfacePost extends UserInterface {
         display = new JTextField();
         contentPane.add(display, BorderLayout.NORTH);
 
-        JPanel buttonPanel = new JPanel(new GridLayout(1, 1));
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
+        addButton(buttonPanel, "Hex / Dec");
         addButton(buttonPanel, "=");
+
+
 
         contentPane.add(buttonPanel, BorderLayout.CENTER);
 
@@ -44,13 +47,25 @@ public class UserInterfacePost extends UserInterface {
         if(command.equals("=")) {
             calc.evaluateInfix(display.getText());
         }
+        else if(command.equals("Hex / Dec")) {
+            calc.changeIsDecCalc();
+        }
 
         redisplay();
 
     }
 
     public void redisplay() {
-        display.setText(calc.getStringDisplayValue());
+        if (calc.getIsDecCalcValue()) {
+            display.setText(calc.getStringDisplayValue());
+        }
+        else {
+            if (calc.getStringDisplayValue().equals("")) {
+                return;
+            }
+            display.setText("0x" + Integer.toHexString(Integer.parseInt(calc.getStringDisplayValue())));
+        }
+
     }
 
 
